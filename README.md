@@ -1,46 +1,19 @@
-# Home Assistant Blueprints by kemoxI
+# HAOS Blueprints by kemoxi 🚀
 
-This repository contains personal Home Assistant blueprints and related documentation.
+A collection of Home Assistant automation blueprints.
 
-## Structure
+## Available Blueprints
 
-```text
-.
-├── .gitignore
-├── LICENSE
-├── README.md
-└── ikea/
-    └── ikea_bilresa_dual_button/
-        ├── README.md
-        └── ikea_bilresa_light_control.yaml
-```
+| Blueprint | Import URL |
+|-----------|------------|
+| [IKEA Bilresa Dual Button](ikea_bilresa_dual_button/) | [![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea_bilresa_dual_button%2Fikea_bilresa_light_control.yaml) |
 
-## Included Blueprint
+## Installation
 
-### IKEA Bilresa Dual Button
+1. Click the **Import** badge above
+2. Or use the direct GitHub raw URL
+3. Or copy YAML manually to `config/blueprints/automation/`
 
-Path:  
-`ikea/ikea_bilresa_dual_button/ikea_bilresa_light_control.yaml`
-
-Functions:
-- Button 1 single press: Toggle light
-- Button 1 hold: Dim brighter
-- Button 2 hold: Dim darker
-- Button 2 double press: Toggle between warm and cool-bright scene
-
-## Import into Home Assistant
-
-Home Assistant can import blueprints from GitHub by URL.
-
-Use the raw GitHub URL of the YAML file in:
-
-`Settings -> Automations & scenes -> Blueprints -> Import Blueprint`
-
-After upload to GitHub, the raw URL will look like:
-
-```text
-https://raw.githubusercontent.com/kemoxI/homeassistant/main/ikea/ikea_bilresa_dual_button/ikea_bilresa_light_control.yaml
-```
 
 ## Why this repository has root files
 
@@ -50,4 +23,4 @@ https://raw.githubusercontent.com/kemoxI/homeassistant/main/ikea/ikea_bilresa_du
 
 ## License
 
-MIT
+[MIT License](LICENSE)
