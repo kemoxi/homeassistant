@@ -9,14 +9,16 @@
 - Button 2 hold: Dim darker
 - Button 2 double press: Toggle scenes (warm 40%/2700K ↔ cool 100%/4000K)
 
-## 🚀 Installation
+## Installation
 
 [![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea-bilresa-dual-button%2Fikea-bilresa-dual-button.yaml)
 
 **Direct URL:**  
 `https://raw.githubusercontent.com/kemoxi/haos-blueprints/main/ikea-bilresa-dual-button/ikea-bilresa-dual-button.yaml`
 
-**Manual:** Copy YAML to `config/blueprints/automation/kemoxi/ikea-bilresa-dual-button.yaml` → Reload blueprints.
+**Manual:**  
+1. Copy YAML to `config/blueprints/automation/kemoxi/ikea-bilresa-dual-button.yaml`  
+2. `Settings → Blueprints → ⋮ → Reload All`
 
 ## Inputs
 
