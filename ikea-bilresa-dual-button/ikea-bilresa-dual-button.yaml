@@ -1,6 +1,7 @@
 blueprint:
   name: "IKEA Bilresa Light Control"
   author: "kemoxi"
+  source_url: "https://raw.githubusercontent.com/kemoxi/haos-blueprints/main/ikea-bilresa-dual-button/ikea-bilresa-dual-button.yaml"
   description: >
     Hybrid light control blueprint for the IKEA Bilresa Dual Button remote.
 
@@ -60,8 +61,10 @@ max_exceeded: silent
 
 variables:
   target_light: !input light_entity
+
   e1: !input event_btn_1
   s1: !input sensor_btn_1
+
   e2: !input event_btn_2
   s2: !input sensor_btn_2
 
@@ -74,94 +77,77 @@ trigger:
     entity_id: !input event_btn_2
     id: t2_any
 
-condition:
+conditions:
   - condition: template
     value_template: >-
-      {{ trigger.from_state is defined
-         and trigger.from_state is not none
-         and trigger.from_state.state not in ['unknown', 'unavailable'] }}
+      {{ trigger.from_state is defined and trigger.from_state.state not in ['unknown', 'unavailable'] }}
 
 action:
   - variables:
-      current_sensor: >-
-        {% if trigger.id == 't1_any' %}
-          {{ s1 }}
-        {% else %}
-          {{ s2 }}
+      current_sensor: >
+        {% if trigger.id == 't1_any' %} {{ s1 }}
+        {% else %} {{ s2 }}
         {% endif %}
       is_btn_1: "{{ trigger.id == 't1_any' }}"
-      event_type: "{{ trigger.to_state.attributes.event_type | default('') }}"
       current_kelvin: "{{ state_attr(target_light, 'color_temp_kelvin') | int(0) }}"
 
   - choose:
       - conditions: "{{ is_btn_1 }}"
         sequence:
           - choose:
-              - conditions: "{{ event_type == 'multi_press_1' }}"
+              - conditions: "{{ trigger.to_state.attributes.event_type == 'multi_press_1' }}"
                 sequence:
-                  - service: light.toggle
-                    target:
-                      entity_id: !input light_entity
-                    data:
-                      transition: 1
+                  - action: light.toggle
+                    target: { entity_id: "{{ target_light }}" }
+                    data: { transition: 1 }
 
-              - conditions: "{{ event_type == 'long_press' }}"
+              - conditions: "{{ trigger.to_state.attributes.event_type == 'long_press' }}"
                 sequence:
                   - repeat:
                       while:
                         - condition: template
                           value_template: "{{ is_state(current_sensor, '1') }}"
                       sequence:
-                        - service: light.turn_on
-                          target:
-                            entity_id: !input light_entity
-                          data:
-                            brightness_step_pct: 8
-                            transition: 0.2
-                        - delay:
-                            milliseconds: 200
+                        - action: light.turn_on
+                          target: { entity_id: "{{ target_light }}" }
+                          data: { brightness_step_pct: 8, transition: 0.2 }
+                        - delay: 0.2
 
       - conditions: "{{ not is_btn_1 }}"
         sequence:
           - choose:
-              - conditions: "{{ event_type == 'long_press' }}"
-                sequence:
-                  - repeat:
-                      while:
-                        - condition: template
-                          value_template: "{{ is_state(current_sensor, '1') }}"
-                        - condition: template
-                          value_template: "{{ state_attr(target_light, 'brightness') | int(0) > 10 }}"
-                      sequence:
-                        - service: light.turn_on
-                          target:
-                            entity_id: !input light_entity
-                          data:
-                            brightness_step_pct: -8
-                            transition: 0.2
-                        - delay:
-                            milliseconds: 200
-
-              - conditions: "{{ event_type == 'multi_press_2' }}"
+              - conditions: "{{ trigger.to_state.attributes.event_type == 'multi_press_2' }}"
                 sequence:
                   - choose:
                       - conditions: "{{ current_kelvin > 3000 }}"
                         sequence:
-                          - service: light.turn_on
-                            target:
-                              entity_id: !input light_entity
+                          - action: light.turn_on
+                            target: { entity_id: "{{ target_light }}" }
                             data:
                               brightness_pct: 40
                               color_temp_kelvin: 2700
                               transition: 1
                     default:
-                      - service: light.turn_on
-                        target:
-                          entity_id: !input light_entity
+                      - action: light.turn_on
+                        target: { entity_id: "{{ target_light }}" }
                         data:
                           brightness_pct: 100
                           color_temp_kelvin: 4000
                           transition: 1
+
+              - conditions: "{{ trigger.to_state.attributes.event_type == 'long_press' }}"
+                sequence:
+                  - repeat:
+                      while:
+                        - condition: template
+                          value_template: "{{ is_state(current_sensor, '1') }}"
+                        - condition: template
+                          value_template: "{{ state_attr(target_light, 'brightness')|int(0) > 10 }}"
+                      sequence:
+                        - action: light.turn_on
+                          target: { entity_id: "{{ target_light }}" }
+                          data: { brightness_step_pct: -8, transition: 0.2 }
+                        - delay: 0.2
 
   - delay:
       milliseconds: 150
