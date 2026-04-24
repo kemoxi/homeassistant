@@ -1,19 +1,34 @@
-# HAOS Blueprints by kemoxi 🚀
+# HAOS Blueprints
 
-A collection of Home Assistant automation blueprints.
+Minimal Home Assistant blueprints for practical everyday automations.
 
-## Available Blueprints
+[![License: MIT](https://img.shields.io/badge/License-MIT-111111.svg?style=flat-square)](LICENSE)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Blueprints-18BCF2.svg?style=flat-square)](https://www.home-assistant.io/docs/automation/using_blueprints/)
+
+## Overview
+
+This repository contains small, focused Home Assistant blueprints with simple setup and clear behavior.
+
+## Blueprints
 
 | Blueprint | Description | Import |
-|-----------|-------------|--------|
-| [IKEA Bilresa Dual Button](ikea-bilresa-dual-button/) | Toggle light, dim up/down, toggle warm/cool scene | [![Import](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea-bilresa-dual-button%2Fikea-bilresa-dual-button.yaml) |
+|---|---|---|
+| [IKEA Bilresa Dual Button](ikea-bilresa-dual-button/) | Toggle light, dim up/down, toggle warm/cool scene | [Import](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea-bilresa-dual-button%2Fikea-bilresa-dual-button.yaml) |
+| [Water Alarm](water-alarm/) | Critical water leak alerts with repeat notifications and optional power-off | [Import](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fwater-alarm%2Fcritical_water_leak_alarm.yaml) |
 
-## Installation
+## Install
 
-1. Click the import badge above.
-2. Or use the raw GitHub URL of the blueprint YAML.
-3. Or copy the YAML manually to `homeassistant/blueprints/automation/`.
+1. Open Home Assistant.
+2. Go to **Settings** → **Automations & scenes** → **Blueprints**.
+3. Click **Import Blueprint**.
+4. Paste the raw GitHub URL of a blueprint file, or use the import link above.
+
+## Notes
+
+- Each blueprint lives in its own folder.
+- Every folder contains the YAML file and a short README.
+- Tested devices may vary depending on integrations and app setup.
 
 ## License
 
-[MIT License](LICENSE)
+Released under the [MIT License](LICENSE).
