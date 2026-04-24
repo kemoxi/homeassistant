@@ -1,57 +1,31 @@
-# IKEA Bilresa Dual Button - Hybrid Light Control Blueprint
+# IKEA Bilresa Dual Button
 
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea-bilresa-dual-button%2Fikea-bilresa-dual-button.yaml)
+Minimal Home Assistant blueprint for the IKEA Bilresa dual-button remote.
 
-**Hybrid light control blueprint** for the [IKEA Bilresa Dual Button](https://www.ikea.com/de/de/p/bilresa-fernbedienung-weiss-smart-dualschalter-10604165) remote.
+## Quick Install
 
-## Functions
+[![Import Blueprint](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea-bilresa-dual-button%2Fikea-bilresa-dual-button.yaml)
 
-- Button 1 single press: Toggle light
-- Button 1 hold: Dim brighter
-- Button 2 hold: Dim darker
-- Button 2 double press: Toggle scenes
-  - Warm scene: 40% brightness, 2700K
-  - Cool/bright scene: 100% brightness, 4000K
+## Manual Install
 
-## Installation
+- Import this raw GitHub URL in Home Assistant:
+  `https://raw.githubusercontent.com/kemoxi/haos-blueprints/main/ikea-bilresa-dual-button/ikea-bilresa-dual-button.yaml`
+- Or copy the YAML file manually to:
+  `config/blueprints/automation/`
 
-### One-click import
-[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fraw.githubusercontent.com%2Fkemoxi%2Fhaos-blueprints%2Fmain%2Fikea-bilresa-dual-button%2Fikea-bilresa-dual-button.yaml)
+## Overview
 
-### Direct raw URL
-```text
-https://raw.githubusercontent.com/kemoxi/haos-blueprints/main/ikea-bilresa-dual-button/ikea-bilresa-dual-button.yaml
-```
-
-### Manual installation
-1. Copy the YAML file to:
-   `homeassistant/blueprints/automation/kemoxi/ikea-bilresa-dual-button.yaml`
-2. In Home Assistant go to:
-   `Settings -> Automations & scenes -> Blueprints`
-3. Open the menu `⋮` and choose:
-   `Reload blueprints`
+This blueprint provides simple button-based control for the IKEA Bilresa dual-button remote.
 
 ## Inputs
 
-| Input | Description |
-|-------|-------------|
-| `light_entity` | Target light |
-| `event_btn_1` | Event entity for button 1 |
-| `sensor_btn_1` | Hold sensor for button 1 |
-| `event_btn_2` | Event entity for button 2 |
-| `sensor_btn_2` | Hold sensor for button 2 |
+- **Button / remote entity** — the IKEA Bilresa remote used as trigger
+- **Target light** — the light entity to control
+- **Warm / cool scene or mode targets** — optional target behavior depending on your setup
 
-## Requirements
+## Actions
 
-- Home Assistant 2024.1.0 or later
-- IKEA Bilresa Dual Button with event entities and matching sensor entities
-
-## Notes
-
-This blueprint uses a hybrid approach:
-- Event entities react quickly to button presses
-- Sensor entities are used to keep the dimming loop active while holding a button
-
-## License
-
-[MIT License](../LICENSE)
+- Toggle light
+- Brightness up
+- Brightness down
+- Toggle warm / cool scene
